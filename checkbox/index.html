@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox Demo</title>
+  <link rel="stylesheet" href="src/app.css">
+</head>
+<body>
+  <div class="center-container">
+    <session class="native-checkbox">
+      <label for="native-checkbox">Native Checkbox</label>
+      <input class="checkbox" type="checkbox" id="native-checkbox" />
+    </session>
+
+    <session class="custom-checkbox">
+      <div class="custom-checkbox" tabindex="0">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+          <rect width="256" height="256" fill="none"></rect>
+          <polyline
+          points="216 72.005 104 184 48 128.005"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16">
+          </polyline>
+          </svg>
+      </div>
+    </session>
+  </div>
+  <script src="src/app.js" defer></script>
+</body>
+</html>
