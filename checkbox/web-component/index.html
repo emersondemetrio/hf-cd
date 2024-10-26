@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox Demo</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .item {
+      width: 500px;
+      padding: 10px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+      border: solid 1px #ddd;
+    }
+
+    .accent {
+      border: solid 1px #b1d6ff;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+    }
+
+    .column {
+      flex-direction: column;
+    }
+
+    .center {
+      align-items: center;
+    }
+
+    .m10 {
+      margin: 10px;
+    }
+
+    .outline {
+      outline: 2px solid #4A90E2;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Checkbox Challenge - Web Component</h2>
+
+    <!-- TODO: comment for presentation -->
+    <section class="item">
+      <strong>Native Checkbox</strong>
+      <input type="checkbox" tabindex="0" class="checkbox" />
+    </section>
+
+    <section class="item accent">
+      <strong>Custom Checkbox</strong>
+      <custom-checkbox class="checkbox"></custom-checkbox>
+    </section>
+
+    <section style="margin-top: 300px">
+      <a href="../pure-css">Pure CSS Version</a>
+    </section>
+  </div>
+  <script src="web-component.js"></script>
+</body>
+
+</html>

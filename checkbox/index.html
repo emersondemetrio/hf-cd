@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkbox Demo</title>
-  <link rel="stylesheet" href="src/app.css">
-</head>
-<body>
-  <div class="center-container">
-    <session class="native-checkbox">
-      <label for="native-checkbox">Native Checkbox</label>
-      <input class="checkbox" type="checkbox" id="native-checkbox" />
-    </session>
+  <title>Custom Checkbox(es)</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-    <session class="custom-checkbox">
-      <div class="custom-checkbox" tabindex="0">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-          <rect width="256" height="256" fill="none"></rect>
-          <polyline
-          points="216 72.005 104 184 48 128.005"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16">
-          </polyline>
-          </svg>
+    section {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10%;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+    }
+
+    .item {
+      flex: 1;
+      margin: 0 20%;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <h2>Select approach</h2>
+
+    <div class="container">
+      <div class="item">
+        <h3>Html/css Only</h3>
+        <p><small>js for event-handling</small></p>
+        <a href="pure-css/">Click here</a>
       </div>
-    </session>
-  </div>
-  <script src="src/app.js" defer></script>
+
+      <div class="item">
+        <h3>Web Component</h3>
+        <p><small>Pure JS/Css solution</small></p>
+        <a href="web-component/">Click here</a>
+      </div>
+    </div>
+  </section>
+
 </body>
+
 </html>

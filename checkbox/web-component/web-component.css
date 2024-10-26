@@ -1,0 +1,40 @@
+:host {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+:host(:focus-visible) {
+  outline: 2px solid #4A90E2;
+  outline-offset: 2px;
+}
+
+svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+:host([aria-checked="true"]) {
+  background-color: #000000;
+}
+
+:host([aria-checked="true"]) svg {
+  opacity: 1;
+}
+
+:host([aria-checked="true"]) svg polyline {
+  stroke: white;
+}
+
+:host([disabled]) {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: rgba(118, 118, 118, 0.3);
+}
