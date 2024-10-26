@@ -8,4 +8,4 @@ export const JsonArea = (props: JsonAreaProps) => {
       </h1>
     </div>
   );
-}
+};
