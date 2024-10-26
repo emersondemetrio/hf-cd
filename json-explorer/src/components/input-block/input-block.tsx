@@ -1,16 +1,38 @@
+import { type InlineValue } from "~/types";
+
 type InputBlockProps = {
   label: string;
   placeholder: string;
-  help?: string;
+  value?: string;
+  propertyValue?: InlineValue | null;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const noop = () => null;
 
+const renderValue = (value: InlineValue | null | undefined) => {
+  console.log(`value`, value);
+
+  if (typeof value === "string") {
+    return value;
+  }
+
+  if (typeof value === "number") {
+    return value;
+  }
+
+  if (typeof value === "boolean") {
+    return value ? "true" : "false";
+  }
+
+  return "undefined";
+};
+
 export const InputBlock = ({
   label,
   placeholder,
-  help,
+  propertyValue,
+  value,
   onChange = noop,
 }: InputBlockProps) => {
   return (
@@ -20,10 +42,12 @@ export const InputBlock = ({
       </label>
       <input
         type="text"
+        value={value}
         placeholder={placeholder}
+        onChange={onChange}
         className="w-full px-3 py-2 border focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      <small>{help ?? "undefined"}</small>
+      <small>{renderValue(propertyValue)}</small>
     </div>
   );
 };

@@ -10,11 +10,13 @@ export type JsonLike = {
     | Record<string, JsonLike>;
 };
 
-export type OnPropertyClickFn = (path: string, property: string) => void;
-
 export type PropertyType = "string" | "number" | "boolean" | "object" | "array";
 
-export type ValueType = string | number | boolean | JsonLike;
+export type InlineValue = string | number | boolean;
+
+export type ValueType = InlineValue | JsonLike;
+
+export type OnPropertyClickFn = (fullPath: string, value: InlineValue) => void;
 
 export type ViewerFn = (
   path: string,

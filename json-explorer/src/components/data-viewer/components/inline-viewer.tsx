@@ -1,12 +1,12 @@
-import { type PropertyType } from "~/types";
+import { type InlineValue, type PropertyType } from "~/types";
 import { PropertyLink } from "./property-link";
 
 type InlineViewerProps = {
   path: string;
   property: string;
-  value: string | number | boolean;
-  propertyType: PropertyType
-  onClick: (path: string, property: string) => void;
+  value: InlineValue;
+  propertyType: PropertyType;
+  onClick: (path: string, property: InlineValue) => void;
 };
 
 export const InlineViewer = ({
@@ -16,16 +16,17 @@ export const InlineViewer = ({
   value,
   onClick,
 }: InlineViewerProps) => {
-
   return (
     <div>
       <PropertyLink
         property={property}
-        onClick={() => onClick(path, property)}
+        onClick={() => onClick(path, value)}
       />
-      <span className="ml-2">{
-        propertyType === "string" ? `'${value}'` : value
-      }</span>
+      <span className="ml-2">
+        {propertyType === "string" && <>{`'${value}'`}</>}
+        {propertyType === "number" && <>{value}</>}
+        {propertyType === "boolean" && <>{value ? "true" : "false"}</>}
+      </span>
     </div>
   );
 };

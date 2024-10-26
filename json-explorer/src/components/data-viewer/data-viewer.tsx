@@ -11,6 +11,7 @@ const renderViewer = (
   property: string,
   value: PropertyType,
   onClick: OnPropertyClickFn,
+  level: number,
 ) => {
   const propertyType = getPropertyType(value);
   switch (propertyType) {
@@ -31,6 +32,7 @@ const renderViewer = (
     case "array":
       return (
         <DataViewer
+          level={level + 1}
           originalKey={property}
           path={path}
           renderAsArray={propertyType === "array"}
@@ -50,39 +52,62 @@ export type DataViewProps = {
   renderAsArray?: boolean;
   data: JsonLike;
   onPropertyClick: OnPropertyClickFn;
+  level: number;
 };
 
-export const DataViewer = (
-  { path, originalKey, data, renderAsArray, onPropertyClick }: DataViewProps,
-) => {
-  console.log(`renderAsArray`, renderAsArray);
+export const DataViewer = ({
+  level,
+  path,
+  originalKey,
+  data,
+  renderAsArray,
+  onPropertyClick,
+}: DataViewProps) => {
+  // console.log(`renderAsArray`, renderAsArray);
+  const marginLeft = level ? `ml-${level}` : `ml-0`;
+  const parentType = getPropertyType(data);
 
   return (
-    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
+    <div className={`w-full p-6 border shadow ${marginLeft}`}>
+      <span>level {level}</span>
+      {!path && <span>{"{"}</span>}
       {originalKey && (
-        <div className="flex items-center justify-between p-2 border-b border-gray-200 dark:border-gray-700">
-          <div className="font-bold">{originalKey}</div>
+        <div className="flex items-center justify-between p-2 border-b">
+          <div className="font-bold">
+            {originalKey}
+            {renderAsArray && <span>{": ["}</span>}
+          </div>
         </div>
       )}
 
       {Object.keys(data).map((key) => {
-        const originalPath = path ? `${path}.${key}` : key;
+        let originalPath = "";
+
+        if (parentType === "array") {
+          originalPath = path ? `${path}[${key}]` : key;
+        }
+
+        if (parentType === "object") {
+          originalPath = path ? `${path}.${key}` : key;
+        }
 
         return (
           <div
             key={key}
-            className="flex items-center justify-between p-2 border-b border-gray-200 dark:border-gray-700"
+            className="flex items-center justify-between p-2 border-b dark:border-gray-700"
           >
             {renderViewer(
               originalPath,
               key,
               data[key] as PropertyType,
               onPropertyClick,
+              level,
             )}
           </div>
         );
       })}
+      {renderAsArray && <span>{"]"}</span>}
+      {!path && <span>{"}"}</span>}
     </div>
   );
 };
